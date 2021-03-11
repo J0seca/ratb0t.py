@@ -27,7 +27,7 @@ async def on_message(message):
         await message.channel.send(':x')
 
     if message.content.startswith(str(client.user).split("#")[0]):
-        await message.channel.send('No pesco wnes ')
+        await message.channel.send('????')
 
         
     await client.process_commands(message)
@@ -56,6 +56,39 @@ async def join(ctx):
     channel = ctx.author.voice.channel
     await channel.connect()
 
-client.run('OSJFMaf8u08uf0addjKFKHSJnk1meZ5ReYjF666') # Put bot token here
-#client.run(token_bot)
 
+####### noticias DF
+
+import urllib
+from urllib import request
+from bs4 import BeautifulSoup
+import time
+
+
+
+@client.command()
+async def noticiasdf(ctx):
+    source = urllib.request.urlopen("http://df.cl")
+    soup = BeautifulSoup(source)
+    for link in soup.find_all("h2"):
+        await ctx.send(25*"-" + link.get_text() + ": \n")
+        enlace = str(link.a).split('"')[1:2]
+        await ctx.send("http://df.cl" + "".join(enlace) + "\n" + "\n")
+        time.sleep(3)
+
+@client.command()
+async def indices(ctx):
+    source = urllib.request.urlopen("https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx")
+    soup = BeautifulSoup(source)
+
+    await ctx.send("Indicadores del banco central:\n"+25*"-")
+
+    await ctx.send("Unidad de fomento (UF): " + soup.find(id="lblValor1_1").get_text() + " CLP")
+    await ctx.send("Dólar Observado: " + soup.find(id="lblValor1_3").get_text() + " CLP")
+    await ctx.send("Onza de Oro: " + soup.find(id="lblValor2_3").get_text() + " USD")
+    await ctx.send("Onza de Plata: " + soup.find(id="lblValor2_4").get_text() + " USD")
+    await ctx.send("Libra de Cobre: " + soup.find(id="lblValor2_5").get_text() + " USD")
+    await ctx.send(25*"-")
+
+client.run('Oawda3ra2OTI2Nasa3rq3rqr2fra38')
+#client.run(token_bot)
