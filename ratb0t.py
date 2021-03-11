@@ -64,17 +64,15 @@ from urllib import request
 from bs4 import BeautifulSoup
 import time
 
-
-
 @client.command()
 async def noticiasdf(ctx):
     source = urllib.request.urlopen("http://df.cl")
     soup = BeautifulSoup(source)
     for link in soup.find_all("h2"):
-        await ctx.send(25*"-" + link.get_text() + ": \n")
+        await ctx.send(25*"-" + "\n" + link.get_text() + "\n")
         enlace = str(link.a).split('"')[1:2]
         await ctx.send("http://df.cl" + "".join(enlace) + "\n" + "\n")
-        time.sleep(3)
+        time.sleep(5)
 
 @client.command()
 async def indices(ctx):
@@ -90,5 +88,5 @@ async def indices(ctx):
     await ctx.send("Libra de Cobre: " + soup.find(id="lblValor2_5").get_text() + " USD")
     await ctx.send(25*"-")
 
-client.run('Oawda3ra2OTI2Nasa3rq3rqr2fra38')
+client.run('ODE2OTIfe3wtwy4wtwtw2rwr232dewf2DwDndYdUzx8')
 #client.run(token_bot)
