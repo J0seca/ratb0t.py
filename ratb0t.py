@@ -35,19 +35,19 @@ async def on_message(message):
 @client.command()
 async def google(ctx, *args):
     await ctx.send("Buscando en google: " + " ".join(args))
-    resultado = search(" ".join(args), pause=2, start=0, stop=1)
+    resultado = search(" ".join(args), 5)
     for r in resultado:
         await ctx.send(r)
 
 @client.command()
 async def youtube(ctx, *args):
-    resultado = search("youtube " + " ".join(args), pause=2, start=0, stop=5)
+    resultado = search("youtube " + " ".join(args), 5)
     for r in resultado:
         await ctx.send(r)
 
 @client.command()
 async def wiki(ctx, *args):
-    resultado = search("wikipedia " + " ".join(args), pause=2, start=0, stop=1)
+    resultado = search("wikipedia " + " ".join(args), 1)
     for r in resultado:
         await ctx.send(r)
 
@@ -88,5 +88,5 @@ async def indices(ctx):
     await ctx.send("Libra de Cobre: " + soup.find(id="lblValor2_5").get_text() + " USD")
     await ctx.send(25*"-")
 
-client.run('ODE2OTIfe3wtwy4wtwtw2rwr232dewf2DwDndYdUzx8')
+client.run('ODE2OTIfe3k6lnklkn4lknlkn4lk6nl4')
 #client.run(token_bot)
